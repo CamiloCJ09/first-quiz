@@ -6,7 +6,10 @@ import java.util.List;
 public class VendingMachineImpl implements VendingMachine {
 
   int quarters = 0;
+  
   static List<Drink> drinks = new ArrayList<>();
+
+  private static VendingMachine instance;
 
   public static VendingMachine getInstance() {
     // Setting the default values for the machine
@@ -15,7 +18,10 @@ public class VendingMachineImpl implements VendingMachine {
     // KarenTea costs 4 quarters
     drinks = List.of(new DrinkImp("ScottCola", true, 3), new DrinkImp("KarenTea", false, 4));
 
-    return new VendingMachineImpl();
+    if(instance == null)
+      instance = new VendingMachineImpl();
+
+    return instance;
   }
 
   /**
